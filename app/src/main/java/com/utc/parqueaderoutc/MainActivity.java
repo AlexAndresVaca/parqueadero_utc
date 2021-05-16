@@ -4,6 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+
+/*
+*  @authors: Apellidos Nombres
+*  @starts:
+*  @last update:
+*  @Description: [Español]
+*
+* */
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
