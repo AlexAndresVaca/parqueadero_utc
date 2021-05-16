@@ -6,9 +6,9 @@ import android.os.Bundle;
 
 
 /*
-*  @authors: Apellidos Nombres
-*  @starts:
-*  @last update:
+*  @authors: Quishpe Vanesa, Tapia Angel, Vaca Alex A.
+*  @starts: 16/05/2021
+*  @last update: 16/05/2021
 *  @Description: [Español]
 *
 * */
