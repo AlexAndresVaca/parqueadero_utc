@@ -14,4 +14,4 @@
 .externalNativeBuild
 .cxx
 /.idea/*
-
+# /app/src/main/res/
