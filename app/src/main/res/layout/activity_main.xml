@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -65,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="ejempli@email.com"
-                android:inputType="textPersonName"
+                android:inputType="textWebEmailAddress"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:textSize="20dp" />
@@ -120,6 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="abrirPantallaRegistro"
                     android:text="Registrate ahora"
                     android:textColor="#3F51B5"
                     android:textSize="18dp" />
@@ -127,4 +131,5 @@
 
         </LinearLayout>
     </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
