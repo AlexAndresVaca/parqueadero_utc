@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -43,6 +44,12 @@ public class Registro extends AppCompatActivity {
         finish(); //Cerrando la pantalla de registro
     }
 
+    // Validar que sea un email
+    private boolean isValidEmail(String email) {
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+        return pattern.matcher(email).matches();
+
+    }
     //Proceso 3: Registrar a los usuarios
     public void registrarUsuario(View vista) {
         String apellido = txtApellidoRegistro.getText().toString();
