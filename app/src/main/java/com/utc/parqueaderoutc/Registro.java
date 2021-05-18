@@ -28,51 +28,53 @@ public class Registro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
         //Mapeo de elementos
-        txtApellidoRegistro         = (EditText)findViewById(R.id.txtApellidoRegistro);
-        txtNombreRegistro           = (EditText)findViewById(R.id.txtNombreRegistro);
-        txtEmailRegistro            = (EditText)findViewById(R.id.txtEmailRegistro);
-        txtPasswordRegistro         = (EditText)findViewById(R.id.txtPasswordRegistro);
-        txtPasswordConfirmaRegistro = (EditText)findViewById(R.id.txtPasswordConfirmaRegistro);
-        txtTelefonoRegistro         = (EditText)findViewById(R.id.txtTelefonoRegistro);
-        txtDireccionRegistro        = (EditText)findViewById(R.id.txtDireccionRegistro);
-        miBdd =new BaseDatos(getApplicationContext()); ////Instanciar/construirr la base de datos en el objeto miBdd
+        txtApellidoRegistro = (EditText) findViewById(R.id.txtApellidoRegistro);
+        txtNombreRegistro = (EditText) findViewById(R.id.txtNombreRegistro);
+        txtEmailRegistro = (EditText) findViewById(R.id.txtEmailRegistro);
+        txtPasswordRegistro = (EditText) findViewById(R.id.txtPasswordRegistro);
+        txtPasswordConfirmaRegistro = (EditText) findViewById(R.id.txtPasswordConfirmaRegistro);
+        txtTelefonoRegistro = (EditText) findViewById(R.id.txtTelefonoRegistro);
+        txtDireccionRegistro = (EditText) findViewById(R.id.txtDireccionRegistro);
+        miBdd = new BaseDatos(getApplicationContext()); // Instanciar/construirr la base de datos en el objeto miBdd
     }
 
-    //Proceso 2: Cerrar la ventana de registr0
+    //Proceso 2: Cerrar la ventana de registro = Boton Cancelar
     public void cerrarPantallaRegistro(View vista) {
         finish(); //Cerrando la pantalla de registro
     }
 
     //Proceso 3: Registrar a los usuarios
-    public void registrarUsuario(View vista)
-    {
-        String apellido         = txtApellidoRegistro.getText().toString().trim();
-        String nombre           = txtNombreRegistro.getText().toString();
-        String email            = txtEmailRegistro.getText().toString();
-        String password         = txtPasswordRegistro.getText().toString();
+    public void registrarUsuario(View vista) {
+        String apellido = txtApellidoRegistro.getText().toString();
+        String nombre = txtNombreRegistro.getText().toString();
+        String email = txtEmailRegistro.getText().toString();
+        String password = txtPasswordRegistro.getText().toString();
         String passwordconfirma = txtPasswordConfirmaRegistro.getText().toString();
-        String telefono         = txtTelefonoRegistro.getText().toString();
-        String direccion        = txtDireccionRegistro.getText().toString();
-            //Valida que los campos no esten en blanco
-            if(TextUtils.isEmpty(apellido)){
+        String telefono = txtTelefonoRegistro.getText().toString();
+        String direccion = txtDireccionRegistro.getText().toString();
+        int cont = 0;
+        //Validar que el campo APELLIDO no este en blanco
+        if (TextUtils.isEmpty(apellido)) {
+            cont++;
             txtApellidoRegistro.setError("Campo Requerido");
             txtApellidoRegistro.requestFocus();
-             }
-            //Valida que las constraseñas sean iguales
-            if(password.equals(passwordconfirma) )
-            {
-                //cuando la condicion es vdd se realiza el proceso de insercion
-                miBdd.agregarUsuarios (apellido, nombre, email, password, passwordconfirma, telefono, direccion);
-                Toast.makeText(getApplicationContext(),"Su registro se ha completado con exito",Toast.LENGTH_LONG).show(); //Mostrando el mensaje de confirmacion
+        }
+        //Validar que el campo NOMBRE no este en blanco
+        if (TextUtils.isEmpty(nombre)) {
+            cont++;
+            txtNombreRegistro.setError("Campo Requerido");
+            txtNombreRegistro.requestFocus();
+        }
+        //Valida que las constraseñas sean iguales
+        if (password.equals(passwordconfirma)) {
+            //cuando la condicion es vdd se realiza el proceso de insercion
+            miBdd.agregarUsuarios(apellido, nombre, email, password, passwordconfirma, telefono, direccion);
+            Toast.makeText(getApplicationContext(), "Su registro se ha completado con exito", Toast.LENGTH_LONG).show(); //Mostrando el mensaje de confirmacion
 
-            }
-            else
-            {
-                //cuando la condicion es falsa se envia un msm de errror
-                Toast.makeText(getApplicationContext(), "La contraseñas ingresasdas no coincide", Toast.LENGTH_LONG).show();//Mostrando el mensaje de erros
-            }
-
-
+        } else {
+            //cuando la condicion es falsa se envia un msm de errror
+            Toast.makeText(getApplicationContext(), "La contraseñas ingresasdas no coincide", Toast.LENGTH_LONG).show();//Mostrando el mensaje de erros
+        }
 
 
     }
