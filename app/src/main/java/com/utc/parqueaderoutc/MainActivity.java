@@ -31,4 +31,7 @@ public class MainActivity extends AppCompatActivity {
         //Iniciando la pantalla de registro
         startActivity(pantallaRegistro);
     }
+
+
+
 }

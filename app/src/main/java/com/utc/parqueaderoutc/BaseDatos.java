@@ -4,7 +4,7 @@ package com.utc.parqueaderoutc;
  *  @authors: Quishpe Vanesa, Tapia Angel, Vaca Alex A.
  *  @starts: 16/05/2021
  *  @last update: 16/05/2021
- *  @Description: [Es] Base de datos
+ *  @Description: Conexión con la Base de datos SQLite
  *
  * */
 
@@ -48,7 +48,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     }
 
     // Metodo insercion de datos, retorna TRUE si agrego y FALSE si fallo
-    public boolean agregarUsuarios(String apellido, String nombre, String email, String password, String telefono, String direccion, Date fecha) {
+    public boolean agregarUsuarios(String apellido, String nombre, String email, String password, String telefono, String direccion, String fecha) {
         SQLiteDatabase miBdd = getWritableDatabase(); // Llama la base de datos en el objeto miBdd
 
         if (miBdd != null) { // Validar que la base de datos exista
