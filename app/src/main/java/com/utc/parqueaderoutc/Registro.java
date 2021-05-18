@@ -50,6 +50,7 @@ public class Registro extends AppCompatActivity {
         return pattern.matcher(email).matches();
 
     }
+
     //Proceso 3: Registrar a los usuarios
     public void registrarUsuario(View vista) {
         String apellido = txtApellidoRegistro.getText().toString();
@@ -72,17 +73,25 @@ public class Registro extends AppCompatActivity {
             txtNombreRegistro.setError("Campo Requerido");
             txtNombreRegistro.requestFocus();
         }
-        //Valida que las constraseñas sean iguales
-        if (password.equals(passwordconfirma)) {
-            //cuando la condicion es vdd se realiza el proceso de insercion
-            miBdd.agregarUsuarios(apellido, nombre, email, password, passwordconfirma, telefono, direccion);
-            Toast.makeText(getApplicationContext(), "Su registro se ha completado con exito", Toast.LENGTH_LONG).show(); //Mostrando el mensaje de confirmacion
-
-        } else {
-            //cuando la condicion es falsa se envia un msm de errror
-            Toast.makeText(getApplicationContext(), "La contraseñas ingresasdas no coincide", Toast.LENGTH_LONG).show();//Mostrando el mensaje de erros
+        if (TextUtils.isEmpty(email) || isValidEmail(email)) {
+            cont++;
+            txtEmailRegistro.setError("Tu email no es válido");
+            txtEmailRegistro.requestFocus();
         }
-
+        //Valida que las constraseñas sean iguales
+        if (!password.equals(passwordconfirma) || password.length() >= 6) {
+            cont++;
+            txtPasswordRegistro.setError("Contraseñas no coinciden o no tiene al menos 6 caracteres");
+            txtPasswordRegistro.requestFocus();
+        }
+        if (cont > 0) {
+            //
+            //Toast.makeText(getApplicationContext(), "Error en el formulario", Toast.LENGTH_LONG).show();//Mostrando el mensaje de erros
+        } else {
+            miBdd.agregarUsuarios(apellido, nombre, email, password, passwordconfirma, telefono, direccion);
+            // de aqui regresa
+            this.cerrarPantallaRegistro(vista);
+        }
 
     }
 }
