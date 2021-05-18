@@ -27,7 +27,7 @@ public class BaseDatos extends SQLiteOpenHelper {
             "password_usu text," +
             "telefono_usu text," +
             "direccion_usu text," +
-            "fecha_registro_usu date)";
+            "fecha_registro_usu datetime)";
 
     //Constructor
     public BaseDatos(Context contexto) {

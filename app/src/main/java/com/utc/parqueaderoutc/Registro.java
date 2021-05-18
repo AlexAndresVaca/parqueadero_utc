@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import java.time.LocalDateTime;
 import android.widget.Toast;
 
 import java.util.regex.Pattern;
@@ -22,6 +23,7 @@ public class Registro extends AppCompatActivity {
     //Entrada
     EditText txtApellidoRegistro, txtNombreRegistro, txtEmailRegistro, txtPasswordRegistro, txtPasswordConfirmaRegistro, txtTelefonoRegistro, txtDireccionRegistro; //Definiendo objetos  para capturar datos de la vista
     BaseDatos miBdd; //Creando un objeto para acceder a los procesos de la base de datos
+    LocalDateTime fechaRegistro = LocalDateTime.now();
 
     //Proceso 1
     @Override
@@ -36,6 +38,7 @@ public class Registro extends AppCompatActivity {
         txtPasswordConfirmaRegistro = (EditText) findViewById(R.id.txtPasswordConfirmaRegistro);
         txtTelefonoRegistro = (EditText) findViewById(R.id.txtTelefonoRegistro);
         txtDireccionRegistro = (EditText) findViewById(R.id.txtDireccionRegistro);
+
         miBdd = new BaseDatos(getApplicationContext()); // Instanciar/construirr la base de datos en el objeto miBdd
     }
 
@@ -43,7 +46,6 @@ public class Registro extends AppCompatActivity {
     public void cerrarPantallaRegistro(View vista) {
         finish(); //Cerrando la pantalla de registro
     }
-
     // Validar que sea un email
     private boolean isValidEmail(String email) {
         Pattern pattern = Patterns.EMAIL_ADDRESS;
@@ -73,13 +75,44 @@ public class Registro extends AppCompatActivity {
             txtNombreRegistro.setError("Campo Requerido");
             txtNombreRegistro.requestFocus();
         }
-        if (TextUtils.isEmpty(email) || isValidEmail(email)) {
+        //Validar que el campo EMAIL no este en blanco
+        if (TextUtils.isEmpty(email)) {
+            cont++;
+            txtEmailRegistro.setError("Campo Requerido");
+            txtEmailRegistro.requestFocus();
+        }
+        //Validar que el campo PASSWORD no este en blanco
+        if (TextUtils.isEmpty(password)) {
+            cont++;
+            txtPasswordRegistro.setError("Campo Requerido");
+            txtPasswordRegistro.requestFocus();
+        }
+        //Validar que el campo PASSWORDCONFIRMA no este en blanco
+        if (TextUtils.isEmpty(passwordconfirma)) {
+            cont++;
+            txtPasswordConfirmaRegistro.setError("Campo Requerido");
+            txtPasswordConfirmaRegistro.requestFocus();
+        }
+        //Validar que el campo TELEFONO no este en blanco
+        if (TextUtils.isEmpty(telefono)) {
+            cont++;
+            txtTelefonoRegistro.setError("Campo Requerido");
+            txtTelefonoRegistro.requestFocus();
+        }
+        //Validar que el campo Direccion no este en blanco
+        if (TextUtils.isEmpty(telefono)) {
+            cont++;
+            txtDireccionRegistro.setError("Campo Requerido");
+            txtDireccionRegistro.requestFocus();
+        }
+
+        if (TextUtils.isEmpty(email) || !isValidEmail(email)) {
             cont++;
             txtEmailRegistro.setError("Tu email no es válido");
             txtEmailRegistro.requestFocus();
         }
         //Valida que las constraseñas sean iguales
-        if (!password.equals(passwordconfirma) || password.length() >= 6) {
+        if (!password.equals(passwordconfirma) || password.length() > 6) {
             cont++;
             txtPasswordRegistro.setError("Contraseñas no coinciden o no tiene al menos 6 caracteres");
             txtPasswordRegistro.requestFocus();
@@ -88,12 +121,13 @@ public class Registro extends AppCompatActivity {
             //
             //Toast.makeText(getApplicationContext(), "Error en el formulario", Toast.LENGTH_LONG).show();//Mostrando el mensaje de erros
         } else {
-            miBdd.agregarUsuarios(apellido, nombre, email, password, passwordconfirma, telefono, direccion);
+            miBdd.agregarUsuarios(apellido, nombre, email, password, telefono, direccion, fechaRegistro.toString());
             // de aqui regresa
             this.cerrarPantallaRegistro(vista);
         }
 
     }
+
 }
 
 
