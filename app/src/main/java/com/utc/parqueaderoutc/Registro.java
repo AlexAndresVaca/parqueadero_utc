@@ -28,18 +28,18 @@ public class Registro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
         //Mapeo de elementos
-        txtApellidoRegistro         = findViewById(R.id.txtApellidoRegistro);
-        txtNombreRegistro           = findViewById(R.id.txtNombreRegistro);
-        txtEmailRegistro            = findViewById(R.id.txtEmailRegistro);
-        txtPasswordRegistro         = findViewById(R.id.txtPasswordRegistro);
-        txtPasswordConfirmaRegistro = findViewById(R.id.txtPasswordConfirmaRegistro);
-        txtTelefonoRegistro         = findViewById(R.id.txtTelefonoRegistro);
-        txtDireccionRegistro        = findViewById(R.id.txtDireccionRegistro);
+        txtApellidoRegistro         = (EditText)findViewById(R.id.txtApellidoRegistro);
+        txtNombreRegistro           = (EditText)findViewById(R.id.txtNombreRegistro);
+        txtEmailRegistro            = (EditText)findViewById(R.id.txtEmailRegistro);
+        txtPasswordRegistro         = (EditText)findViewById(R.id.txtPasswordRegistro);
+        txtPasswordConfirmaRegistro = (EditText)findViewById(R.id.txtPasswordConfirmaRegistro);
+        txtTelefonoRegistro         = (EditText)findViewById(R.id.txtTelefonoRegistro);
+        txtDireccionRegistro        = (EditText)findViewById(R.id.txtDireccionRegistro);
         miBdd =new BaseDatos(getApplicationContext()); ////Instanciar/construirr la base de datos en el objeto miBdd
     }
 
     //Proceso 2: Cerrar la ventana de registr0
-    public void cerrarPantallaRegistro(View vsta) {
+    public void cerrarPantallaRegistro(View vista) {
         finish(); //Cerrando la pantalla de registro
     }
 
